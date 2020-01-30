@@ -8,14 +8,15 @@ class SocialMiddleware
 {
     /**
      * Handle an incoming request.
-     *
+     * Middleware para validar desde que servicio se esta accediendo
+     * @author Fabio Castagnola
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        $services = ['facebook','google','github'];
+        $services = ['facebook','google','github','twitter','instagram'];
         $enableServices =[];
         foreach ($services as $service) {
             if(config('services'.$service)){

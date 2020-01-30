@@ -14,11 +14,13 @@ class SocialLoginController extends Controller
 
 {
     protected $redirectTo = '/home';
-//    public function __construct()
-//    {
-//       $this->middleware('social');
-//    }
 
+    /**
+     * Funcion inicial para inicial el proceso de acceso con Socialite
+     * @Autor Fabio Castagnola
+     * @param $service
+     * @return mixed
+     */
     public function redirect($service)
     {
         return Socialite::driver($service)->stateless()->redirect();
@@ -26,6 +28,12 @@ class SocialLoginController extends Controller
 
     }
 
+    /**
+     * EndPoint de vuelta para validar las credenciales del usuario y acceso a la aplicación
+     * @Autor Fabio castagnola
+     * @param $service
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function handleProviderCallback($service)
     {
         $userSocial = Socialite::driver($service)->stateless()->user();
